@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Neural Networks: Understanding Using Visual Basic</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body>
+
+<center><h1>Neural Networks: Understanding Using Visual Basic</h1></center>
+<p><font size="5"><i>Introduction:</i></font>
+<br><br>
+  Neural Networks as a subject was the most difficult one to learn when I started 
+  taking interest in AI. Although, Internet was full of NN tutorials but they 
+  all seemed cryptic and too much mathematical. Anything which was available was 
+  hard to digest for a beginner in this field. <br>
+  I swept through tons of code and tutorials just to understand what the hell 
+  ,much hyped, NNs were. Then, one fine day, Eureka!<br>
+  I finally understood them and their practical applications. I immediately decided 
+  to write code in Visual Basic(my fav lang). After an hour of writing code and 
+  few more for tweaking it, I finally produced something which I had only dreamt 
+  of. It was one of the the best moments of my life. Then I finally uploaded .........history 
+  is very boring. <br>
+  <b>The real thing:</b> There isn't a single NN tutorial available for Visual 
+  Basic Programmers. That is why I decided to write this tutorial.</p>
+
+<p><font size="5"><i>Introduction to Neural Networks:</i></font>
+<br><br>
+  Neural Network or more appropriately Artificial Neural Network is basically 
+  a mathematical model of what goes in our mind(or brain). The brain of all the 
+  advanced living creatures consists of neurons, a basic cell, which when interconnected 
+  produces what we call Neural Network. The sole purpose of a Neuron is to receive 
+  electrical signals, accumulate them and see further if they are strong enough 
+  to pass forward. <br>
+  So simple in its basic functionality but the interconnections of these produces 
+  beings(me, u and others) capable of writing about them. phew! The real thing 
+  lies not in neurons but the complex pattern in which they are interconnected. 
+  NNs are just like a game of chess, easy to learn but hard to master. As the 
+  moves of chess are simple, yet the succession of moves is what makes the game 
+  complex and fun to play. Imagine, a chess game in which you are allowed only 
+  one single move. Would that game be fun to play? <br>
+  In the same way, a single neuron is useless. Well, practically useless. It is the complex connection between them
+and values attached with them(explained later) which makes brains capable of thinking and having a sense of
+consciousness(much debated).
+
+
+</p>
+
+<p><font size="5"><i>Basic Working:</i></font>
+<br><br>
+  As explained earlier, a neuron is basically a cell which accumulates electrical 
+  signals with different strengths. What it does more is that it compares the 
+  accumulated signal with one predefined value unique to every neuron. This value 
+  is called bias. Well, now I think is time to explain with an image. So here 
+  is it: <br>
+  <br><center><img src="f41.gif">
+<br><i>Image Source: </i>http://www.interwet.psu.edu/f41.gif
+</center>
+<br><br>
+  The circles in the image represents neurons. This network or more appropriately 
+  this network topology is called feed-forward multi layered neural network. It 
+  is the most basic and most widely used network. I will be explaining this network 
+  only. <br>
+  The network is called multi layered because it consists of more than two layers. 
+  The neurons are arranged in a number of layers, generally three. They are input, 
+  hidden/middle and output layers. The names signify the function of the layer. 
+  <br>
+  This network is feed-forward, means the values are propagated in one direction only. There are many other
+topologies in which values can be looped or move in both forward and backward direction. But, this network
+allows the movement of values only from input layer to output layer. The functions of various layers are explained below:
+
+<ul>
+  <li><b>Input layer:</b> As it says, this layer takes the inputs(the values you 
+    pass) and forwards it to hidden layer. You can just imagine input layer as 
+    a group of neurons whose sole task is to pass the numeric inputs to the next 
+    level. Well it depends on the implementation but, in my implementation the 
+    numeric input has to be in range 0 and 1 (both inclusive). The larger the 
+    number greater its strength. E.g. 0.51 is stronger than 0.39 but 0.93412 is 
+    stronger still. But, the interpretation of this strength depends upon the 
+    implementation and the problem NN is required to solve. E.g. for an OCR you 
+    connect every pixel with its respective input neuron and darker the pixel, 
+    higher the signal/input strength. In short shades of gray would correspond 
+    to input strength. But at last again, remember: Input layer never processes 
+    data, it just hands over it. </li>
+  <li><b>Middle layer:</b> This layer is the real thing behind the network. Without 
+    this layer, network would not be capable of solving complex problems. There 
+    can be any number or middle or hidden layers. But, for most of the tasks, 
+    one is sufficient. The number of neurons in this layer is crucial. There is 
+    no formula for calculating the number, just hit and trial works. <br>
+    This layer takes the input from input layer, does some calculations and forwards to the next layer, in most cases it is the
+output layer.
+</li>
+<li><b>Output layer:</b> This layer consists of neurons which output the result to you. This layer takes the value from the previous
+layer, <b>does calculations</b> and gives the final result. Basically, this layer is just like hidden layer but instead
+of passing values to the next layer, the values are treated as output.
+</li>
+  <li><b>Dendrites:</b> No! it is not some creature from X-Files, but a name given 
+    to straight lines joining two neurons of consecutive layers, which you can 
+    see in the image. They are just a passage(or method) through which values 
+    are passed from one layer to the next. There is a value attached with dendrite 
+    called <b>weight</b>. The weight associated with a dendrites basically determines 
+    the importance of incoming value. A weight with larger value determines that 
+    the value from that particular neuron is of higher significance. To achieve 
+    this what we do is multiply the incoming value with weight. So no matter how 
+    high the value is, if the weight is low the multiplication yields the final 
+    low value. I know it is hard to explain and understand, but take a look at 
+    code and you'll understand this concept more clearly. </li>
+</ul>
+So now lets get to the code and define the basic elements we'll need in NNs
+<br><br>
+
+<font color=black>
+<pre>
+<font color="#008000">'Don't forget to write option base 1 into the code</font>
+<font color="#008000">' or else this net will not work</font>
+<font color="#008000">'Coded by Paras Chopra</font>
+<font color="#008000">'paras_chopra@fastmail.fm</font>
+<font color="#008000">'http://naramcheez.netfirms.com</font>
+
+<font color="#008000">'Please don't forget to give comments, credits and most important your VOTE!</font>
+
+
+<font color="#0000A0">Option</font> <font color="#0000A0">Base</font> 1
+<font color="#0000A0">Option</font> <font color="#0000A0">Explicit</font>
+
+<font color="#0000A0">Const</font> e = 2.7183 <font color=green>'Mathematical const, used in sigmod function</font>
+
+<font color="#0000A0">Private</font> <font color="#0000A0">Type</font> Dendrite <font color=green>' Dendrite connects one neuron to another and allows signal to pass from it</font>
+Weight <font color="#0000A0">As</font> <font color="#0000A0">Double</font> <font color=green>'Weight it has</font>
+<font color="#0000A0">End</font> <font color="#0000A0">Type</font>
+
+<font color="#0000A0">Private</font> <font color="#0000A0">Type</font> Neuron <font color=green>'The main thing</font>
+Dendrites() <font color="#0000A0">As</font> Dendrite <font color=green>'Array of Dendrites</font>
+DendriteCount <font color="#0000A0">As</font> <font color="#0000A0">Long</font> <font color=green>'Number of dendrites</font>
+Bias <font color="#0000A0">As</font> <font color="#0000A0">Double</font> <font color=green>'The bias</font>
+Value <font color="#0000A0">As</font> <font color="#0000A0">Double</font> <font color=green>'The value to be passed to next layer of neurons</font>
+Delta <font color="#0000A0">As</font> <font color="#0000A0">Double</font> <font color=green>'The delta of neuron (used while learning)</font>
+<font color="#0000A0">End</font> <font color="#0000A0">Type</font>
+
+
+
+<font color="#0000A0">Private</font> <font color="#0000A0">Type</font> Layer <font color=green>'Layer containing number of neurons</font>
+Neurons() <font color="#0000A0">As</font> Neuron <font color=green>'Neurons in the layer</font>
+NeuronCount <font color="#0000A0">As</font> <font color="#0000A0">Long</font> <font color=green>'Number of neurons</font>
+<font color="#0000A0">End</font> <font color="#0000A0">Type</font>
+
+<font color="#0000A0">Private</font> <font color="#0000A0">Type</font> NeuralNetwork
+Layers() <font color="#0000A0">As</font> Layer <font color=green>'Layers in the network</font>
+LayerCount <font color="#0000A0">As</font> <font color="#0000A0">Long</font> <font color=green>'Number of layers</font>
+LearningRate <font color="#0000A0">As</font> <font color="#0000A0">Double</font> <font color=green>'The learning rate of the network</font>
+<font color="#0000A0">End</font> <font color="#0000A0">Type</font>
+
+<font color="#0000A0">Dim</font> Network <font color="#0000A0">As</font> NeuralNetwork <font color=green>' Our main network</font>
+</pre>
+<br>
+The code above is pretty self explanatory. And for the things you haven't understood, 
+don't worry that belongs to belong to the training section, which I would be explaining 
+a little later on. The only thing that you need to understand now is <b>bias</b>. 
+Bias is just another value or parameter associated with a neuron. In my and most 
+of the implementations this value is added to the accumulated incoming value. 
+You will better understand this when we see code for running the NN. For now see 
+the code for <b>creating the net</b>:<br>
+<pre>
+<font color="#0000A0">Function</font> CreateNet(LearningRate <font color="#0000A0">As</font> <font color="#0000A0">Double</font>, ArrayOfLayers <font color="#0000A0">As</font> <font color="#0000A0">Variant</font>) <font color="#0000A0">As</font> <font color="#0000A0">Integer</font> <font color=green>'0 = Unsuccessful and 1 = Successful</font>
+<font color="#0000A0">Dim</font> i, j, k <font color="#0000A0">As</font> <font color="#0000A0">Integer</font>
+Network.LayerCount = <font color="#0000A0">UBound</font>(ArrayOfLayers) <font color=green>'Init number of layers</font>
+<font color="#0000A0">If</font> Network.LayerCount < 2 <font color="#0000A0">Then</font> <font color=green>'Input and output layers must be there</font>
+    CreateNet = 0 <font color=green>'Unsuccessful</font>
+    <font color="#0000A0">Exit</font> <font color="#0000A0">Function</font>
+<font color="#0000A0">End</font> <font color="#0000A0">If</font>
+Network.LearningRate = LearningRate <font color=green>'The learning rate</font>
+<font color="#0000A0">ReDim</font> Network.Layers(Network.LayerCount) <font color="#0000A0">As</font> Layer <font color=green>'Redim the layers variable</font>
+<font color="#0000A0">For</font> i = 1 <font color="#0000A0">To</font> <font color="#0000A0">UBound</font>(ArrayOfLayers) <font color=green>' Initialize all layers</font>
+DoEvents
+    Network.Layers(i).NeuronCount = ArrayOfLayers(i)
+    <font color="#0000A0">ReDim</font> Network.Layers(i).Neurons(Network.Layers(i).NeuronCount) <font color="#0000A0">As</font> Neuron
+    <font color="#0000A0">For</font> j = 1 <font color="#0000A0">To</font> ArrayOfLayers(i) <font color=green>'Initialize all neurons</font>
+    DoEvents
+        <font color="#0000A0">If</font> i = <font color="#0000A0">UBound</font>(ArrayOfLayers) <font color="#0000A0">Then</font> <font color=green>'We will not init dendrites for it because output layers doesn't have any</font>
+            Network.Layers(i).Neurons(j).Bias = GetRand <font color=green>'Set the bias to random value</font>
+            Network.Layers(i).Neurons(j).DendriteCount = ArrayOfLayers(i - 1)
+            <font color="#0000A0">ReDim</font> Network.Layers(i).Neurons(j).Dendrites(Network.Layers(i).Neurons(j).DendriteCount) <font color="#0000A0">As</font> Dendrite <font color=green>'Redim the dendrite var</font>
+            <font color="#0000A0">For</font> k = 1 <font color="#0000A0">To</font> ArrayOfLayers(i - 1)
+                DoEvents
+                Network.Layers(i).Neurons(j).Dendrites(k).Weight = GetRand <font color=green>'Set the weight of each dendrite</font>
+            <font color="#0000A0">Next</font> k
+        <font color="#0000A0">ElseIf</font> i = 1 <font color="#0000A0">Then</font> <font color=green>'Only init dendrites not bias</font>
+            DoEvents <font color=green>'Do nothing coz it is input layer</font>
+        <font color="#0000A0">Else</font>
+            Network.Layers(i).Neurons(j).Bias = GetRand <font color=green>'Set the bias to random value</font>
+            Network.Layers(i).Neurons(j).DendriteCount = ArrayOfLayers(i - 1)
+            <font color="#0000A0">ReDim</font> Network.Layers(i).Neurons(j).Dendrites(Network.Layers(i).Neurons(j).DendriteCount) <font color="#0000A0">As</font> Dendrite <font color=green>'Redim the dendrite var</font>
+            <font color="#0000A0">For</font> k = 1 <font color="#0000A0">To</font> ArrayOfLayers(i - 1)
+                DoEvents
+                Network.Layers(i).Neurons(j).Dendrites(k).Weight = GetRand <font color=green>'Set the weight of each dendrite</font>
+            <font color="#0000A0">Next</font> k
+        <font color="#0000A0">End</font> <font color="#0000A0">If</font>
+    <font color="#0000A0">Next</font> j
+<font color="#0000A0">Next</font> i
+CreateNet = 1
+<font color="#0000A0">End</font> <font color="#0000A0">Function</font>
+</pre>
+<br>
+Basically, what we are doing above is:<ul>
+<li>Creating an array of Neurons and dendrites.</li>
+  <li>Looping through all the neurons and assigning their respective <b>baises</b> 
+    a random value.</li>
+  <li>Looping through all the dendrites and assigning their respective <b>weights</b> 
+    a random value.</li>
+</ul>
+Now lets see, how do we <b>run a neural network</b>:
+<br>
+<pre>
+<font color="#0000A0">Function</font> Run(ArrayOfInputs <font color="#0000A0">As</font> <font color="#0000A0">Variant</font>) <font color="#0000A0">As</font> <font color="#0000A0">Variant</font> <font color=green>'It returns the output in form of array</font>
+<font color="#0000A0">Dim</font> i, j, k <font color="#0000A0">As</font> <font color="#0000A0">Integer</font>
+<font color="#0000A0">If</font> <font color="#0000A0">UBound</font>(ArrayOfInputs) <> Network.Layers(1).NeuronCount <font color="#0000A0">Then</font>
+    Run = 0
+    <font color="#0000A0">Exit</font> <font color="#0000A0">Function</font>
+<font color="#0000A0">End</font> <font color="#0000A0">If</font>
+<font color="#0000A0">For</font> i = 1 <font color="#0000A0">To</font> Network.LayerCount
+DoEvents
+    <font color="#0000A0">For</font> j = 1 <font color="#0000A0">To</font> Network.Layers(i).NeuronCount
+    DoEvents
+        <font color="#0000A0">If</font> i = 1 <font color="#0000A0">Then</font>
+            Network.Layers(i).Neurons(j).Value = ArrayOfInputs(j) <font color=green>'Set the value of input layer</font>
+        <font color="#0000A0">Else</font>
+            Network.Layers(i).Neurons(j).Value = 0 <font color=green>'First set the value to zero</font>
+            <font color="#0000A0">For</font> k = 1 <font color="#0000A0">To</font> Network.Layers(i - 1).NeuronCount
+                DoEvents
+                Network.Layers(i).Neurons(j).Value = Network.Layers(i).Neurons(j).Value + Network.Layers(i - 1).Neurons(k).Value * Network.Layers(i).Neurons(j).Dendrites(k).Weight <font color=green>'Calculating the value</font>
+            <font color="#0000A0">Next</font> k
+        Network.Layers(i).Neurons(j).Value = Activation(Network.Layers(i).Neurons(j).Value + Network.Layers(i).Neurons(j).Bias) <font color=green>'Calculating the real value of neuron</font>
+<font color="#008000">        'Network.Layers(i).Neurons(j).Value = tanh(Network.Layers(i).Neurons(j).Value + Network.Layers(i).Neurons(j).Bias) 'Calculating the real value of neuron</font>
+        <font color="#0000A0">End</font> <font color="#0000A0">If</font>
+    <font color="#0000A0">Next</font> j
+<font color="#0000A0">Next</font> i
+<font color="#0000A0">ReDim</font> OutputResult(Network.Layers(Network.LayerCount).NeuronCount) <font color="#0000A0">As</font> <font color="#0000A0">Double</font>
+<font color="#0000A0">For</font> i = 1 <font color="#0000A0">To</font> (Network.Layers(Network.LayerCount).NeuronCount)
+    DoEvents
+    OutputResult(i) = (Network.Layers(Network.LayerCount).Neurons(i).Value) <font color=green>'The array of output result</font>
+<font color="#0000A0">Next</font> i
+Run = OutputResult
+<font color="#0000A0">End</font> <font color="#0000A0">Function</font></pre>
+<br>What we have done above may be summed up as: <ul>
+  <li>Assigning all the input neurons the values provided in the 'ArrayOfInputs' 
+    array. For every other type of neuron, the value assigned is 0 because we 
+    have to calculate that value. </li>
+  <li>Now for every hidden layer (also for output layer), the value is sum of values 
+    of previous layers multiplied with the weight of dendrites.</li>
+  <li>To the resulting value, add up the bias value.</li>
+<li>Pass the resulting value through Activation function.</li>
+<li>Give back the values of output neurons as final results.</li>
+</ul>
+
+I would like to explain that activation function. What this function does is that, 
+no matter what number you pass, it always returns a number between 0 and 1. This 
+is because we want the final value of every neuron between 0 and 1, but what if 
+it comes to be something like 2.5 or 1.25, etc. Thus, in order to avoid this incompatibility 
+with standards we use the activation function. The function is something like: 
+<br>
+<pre>
+<font color="#0000A0">Private</font> <font color="#0000A0">Function</font> Activation(Value <font color="#0000A0">As</font> <font color="#0000A0">Double</font>)
+<font color="#008000">'To crunch a number between 0 and 1</font>
+    Activation = (1 / (1 + Exp(Value * -1)))
+<font color="#0000A0">End</font> <font color="#0000A0">Function</font></pre>
+<br>I will suppose you wouldn't like to get into the mathematical details(hurray!). In case you like,
+you can easily google it and find out.
+</p>
+
+<p><font size="5"><i>Training:</i></font>
+<br><br>
+  Training is the most important part of a neural network and the one consisting 
+  of the most mathematics. We'll be using Backpropagation method for training 
+  the NN. I would be explaining only the basic idea how it is done and not all 
+  the details. And you need not worry, just apply the formulae written in the 
+  code and you can get the training up and ready. Always remember, it is not necessary 
+  to know the details of any system in order to get something practical and working 
+  out of it. The best example illustrating this principle is Charles Darwin(what?). 
+  Yes, at the time when he wrote '<i>On the Origin of Species</i>', DNA was not 
+  known. So, he propounded the evolution without even knowing the method of how 
+  it is done i.e. how traits are passed on from parents to offspring. <br>
+  Back to NN training, first lets see the code:
+<pre>
+
+<font color="#0000A0">Function</font> SupervisedTrain(inputdata <font color="#0000A0">As</font> <font color="#0000A0">Variant</font>, outputdata <font color="#0000A0">As</font> <font color="#0000A0">Variant</font>) <font color="#0000A0">As</font> <font color="#0000A0">Integer</font> <font color=green>'0=unsuccessful and 1 = successful</font>
+<font color="#0000A0">Dim</font> i, j, k <font color="#0000A0">As</font> <font color="#0000A0">Integer</font>
+<font color="#0000A0">If</font> <font color="#0000A0">UBound</font>(inputdata) <> Network.Layers(1).NeuronCount <font color="#0000A0">Then</font> <font color=green>'Check if correct amount of input is given</font>
+    SupervisedTrain = 0
+    <font color="#0000A0">Exit</font> <font color="#0000A0">Function</font>
+<font color="#0000A0">End</font> <font color="#0000A0">If</font>
+<font color="#0000A0">If</font> <font color="#0000A0">UBound</font>(outputdata) <> Network.Layers(Network.LayerCount).NeuronCount <font color="#0000A0">Then</font> <font color=green>'Check if correct amount of output is given</font>
+    SupervisedTrain = 0
+    <font color="#0000A0">Exit</font> <font color="#0000A0">Function</font>
+<font color="#0000A0">End</font> <font color="#0000A0">If</font>
+<font color="#0000A0">Call</font> Run(inputdata) <font color=green>'Calculate values of all neurons and set the input</font>
+<font color="#008000">'Calculate delta's</font>
+<font color="#0000A0">For</font> i = 1 <font color="#0000A0">To</font> Network.Layers(Network.LayerCount).NeuronCount
+DoEvents
+    Network.Layers(Network.LayerCount).Neurons(i).Delta = Network.Layers(Network.LayerCount).Neurons(i).Value * (1 - Network.Layers(Network.LayerCount).Neurons(i).Value) * (outputdata(i) - Network.Layers(Network.LayerCount).Neurons(i).Value) <font color=green>'Deltas of Output layer</font>
+    <font color="#0000A0">For</font> j = Network.LayerCount - 1 <font color="#0000A0">To</font> 2 <font color="#0000A0">Step</font> -1
+    DoEvents
+        <font color="#0000A0">For</font> k = 1 <font color="#0000A0">To</font> Network.Layers(j).NeuronCount
+        DoEvents
+            Network.Layers(j).Neurons(k).Delta = Network.Layers(j).Neurons(k).Value * (1 - Network.Layers(j).Neurons(k).Value) * Network.Layers(j + 1).Neurons(i).Dendrites(k).Weight * Network.Layers(j + 1).Neurons(i).Delta <font color=green>'Deltas of Hidden Layers</font>
+        <font color="#0000A0">Next</font> k
+    <font color="#0000A0">Next</font> j
+<font color="#0000A0">Next</font> i
+
+
+<font color="#0000A0">For</font> i = Network.LayerCount <font color="#0000A0">To</font> 2 <font color="#0000A0">Step</font> -1
+DoEvents
+    <font color="#0000A0">For</font> j = 1 <font color="#0000A0">To</font> Network.Layers(i).NeuronCount
+    DoEvents
+        Network.Layers(i).Neurons(j).Bias = Network.Layers(i).Neurons(j).Bias + (Network.LearningRate * 1 * Network.Layers(i).Neurons(j).Delta)  <font color=green>'Calculate new bias</font>
+        <font color="#0000A0">For</font> k = 1 <font color="#0000A0">To</font> Network.Layers(i).Neurons(j).DendriteCount
+        DoEvents
+            
+            Network.Layers(i).Neurons(j).Dendrites(k).Weight = Network.Layers(i).Neurons(j).Dendrites(k).Weight + (Network.LearningRate * Network.Layers(i - 1).Neurons(k).Value * Network.Layers(i).Neurons(j).Delta) <font color=green>'Calculate new weights</font>
+        <font color="#0000A0">Next</font> k
+    <font color="#0000A0">Next</font> j
+<font color="#0000A0">Next</font> i
+SupervisedTrain = 1
+<font color="#0000A0">End</font> <font color="#0000A0">Function</font>
+</pre>
+So lets see what we have here in arguments, inputdata a sample input array and 
+outputdata, its corresponding output which we require the NN to produce. 
+<ul>
+<li>Run the NN using inputdata as inputs. Now, we have all the values of individual neurons.</li>
+<li>Loop through last layer to first layer.</li>
+<li>Calculate the difference between output values desired and output values produced.</li>
+  <li>Using that difference, adjust the values of bias and weights accordingly.</li>
+</ul>
+This training procedure must be repeated for larger number of samples so that 
+our NN can produce accurate results for untrained input samples. <br>
+Yes, I know I haven't explained the training part in details(well practically 
+zero). You see, I had written this code 1-2 years back and was not actively involved 
+with NNs. During that period I have forgotten all the mathematics behind Backpropagation. 
+But anyway, If you want to delve into thedetails, Google is to your rescue. </p> 
+<p><font size="5"><i>Practical Applications:</i></font>
+<br><br>
+  There are numerous applications of NNs limited only by your imagination. Innovation 
+  is key to success, so dude use NNs to create something which will revolutionize 
+  the world! <br>
+  For the sake of writing :) a few applications are given below:
+<ul>
+  <li>Optical Character Recognization </li>
+<li>Stock market prediction</li>
+<li>Creating new art forms</li>
+  <li>Modeling human behavior</li>
+<li>Loan risk analysis</li>
+<li>Classification of patterns, Image analysis, music generation, etc, etc.</li>
+</ul>
+</p>
+
+<p><font size="5"><i>Further reading:</i></font>
+<br><br>
+  There is more theory in this world about NNs than you can read in your lifetime. 
+  There are Hopfield networks, Recurrent networks, NeuroGenetics, etc. They are 
+  for people who really want to do serious research in this field. But in case, 
+  you want to read further, you can. Internet is a great free information highway. 
+  You can get anything you want on the internet if you know how to search effectively. 
+  Even if you don't, train a NN to fetch NN tutorials for you :-)<br>
+  Thanks for reading this basic tutorial, Hope you enjoyed the ride. Please feel free to give <br>
+  comments and votes. 
+</body>
+</html>
